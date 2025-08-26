@@ -21,29 +21,29 @@ a **PostgreSQL database**, and **Adminer** (DB UI) in one reproducible environme
 ## 🗂 Project Structure
 
 - **db/**
-  - `init.sql` → SQL script για δημιουργία του πίνακα `clicks`.
+  - `init.sql` → SQL script for creating the `clicks` table.
 
 - **backend/**
-  - `Dockerfile` → Docker build για FastAPI.
+  - `Dockerfile` → Docker build for FastAPI.
   - `requirements.txt` → Python dependencies.
   - **app/**
     - `main.py` → FastAPI entrypoint (routes, API).
-    - `database.py` → Σύνδεση & session με PostgreSQL.
-    - `models.py` → Ορισμοί SQLAlchemy models (π.χ. Click).
-    - `crud.py` → Λειτουργίες CRUD για clicks.
+    - `database.py` → Connection & session handling with PostgreSQL.
+    - `models.py` → SQLAlchemy models (e.g., Click).
+    - `crud.py` → CRUD operations for clicks.
 
 - **frontend/**
-  - `Dockerfile` → Docker build για React (Vite).
-  - `package.json` → Node dependencies & scripts.
-  - `vite.config.js` → Config για Vite + React plugin.
+  - `Dockerfile` → Docker build for React (Vite).
+  - `package.json` → Node.js dependencies & scripts.
+  - `vite.config.js` → Configuration for Vite + React plugin.
   - `index.html` → Root HTML template.
   - **src/**
     - `main.jsx` → React entrypoint.
-    - `App.jsx` → Κύριο UI component (κουμπιά, counters).
+    - `App.jsx` → Main UI component (buttons & counters).
 
-- **docker-compose.yml** → Ορίζει όλα τα services (frontend, backend, db, adminer).
-- **.env.example** → Παράδειγμα αρχείου περιβάλλοντος (env vars).
-- **README.md** → Documentation του project.
+- **docker-compose.yml** → Defines all services (frontend, backend, db, adminer).
+- **.env.example** → Example environment variables file.
+- **README.md** → Project documentation.
 
 
 ---
