@@ -85,6 +85,7 @@ View counts in the frontend
 Check the database via Adminer (Server: db, User: appuser, Password: secretpassword, Database: appdb)
 
 API endpoints:
+```
 # Get current counts
 curl http://localhost:8000/api/counts
 
@@ -95,8 +96,8 @@ curl -X POST http://localhost:8000/api/clicks \
 
 # Clear all clicks
 curl -X DELETE http://localhost:8000/api/clicks/clear
-
-Tech Stack
+```
+🛠️ Tech Stack
 
 Frontend: React + Vite
 
@@ -108,11 +109,10 @@ DB Admin: Adminer
 
 Orchestration: Docker Compose
 
-Next Steps / Improvements
+🧩 Next Steps / Improvements
 
 Add authentication (users)
 
 Add unit tests (Pytest, React Testing Library)
 
 Deploy to cloud (e.g. AWS, GCP, Render)
-
