@@ -19,28 +19,32 @@ a **PostgreSQL database**, and **Adminer** (DB UI) in one reproducible environme
 ---
 
 ## 🗂 Project Structure
-click-tracker/
-├─ db/
-│ └─ init.sql # Initial SQL (table creation)
-├─ backend/
-│ ├─ Dockerfile
-│ ├─ requirements.txt
-│ └─ app/
-│ ├─ main.py # FastAPI entrypoint
-│ ├─ database.py # DB engine & session
-│ ├─ models.py # SQLAlchemy models
-│ └─ crud.py # DB operations
-├─ frontend/
-│ ├─ Dockerfile
-│ ├─ package.json
-│ ├─ vite.config.js
-│ ├─ index.html
-│ └─ src/
-│ ├─ main.jsx # React entrypoint
-│ └─ App.jsx # UI (buttons + counters)
-├─ docker-compose.yml
-├─ .env.example # Example environment variables
-└─ README.md
+
+- **db/**
+  - `init.sql` → SQL script για δημιουργία του πίνακα `clicks`.
+
+- **backend/**
+  - `Dockerfile` → Docker build για FastAPI.
+  - `requirements.txt` → Python dependencies.
+  - **app/**
+    - `main.py` → FastAPI entrypoint (routes, API).
+    - `database.py` → Σύνδεση & session με PostgreSQL.
+    - `models.py` → Ορισμοί SQLAlchemy models (π.χ. Click).
+    - `crud.py` → Λειτουργίες CRUD για clicks.
+
+- **frontend/**
+  - `Dockerfile` → Docker build για React (Vite).
+  - `package.json` → Node dependencies & scripts.
+  - `vite.config.js` → Config για Vite + React plugin.
+  - `index.html` → Root HTML template.
+  - **src/**
+    - `main.jsx` → React entrypoint.
+    - `App.jsx` → Κύριο UI component (κουμπιά, counters).
+
+- **docker-compose.yml** → Ορίζει όλα τα services (frontend, backend, db, adminer).
+- **.env.example** → Παράδειγμα αρχείου περιβάλλοντος (env vars).
+- **README.md** → Documentation του project.
+
 
 ---
 
