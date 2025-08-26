@@ -118,6 +118,7 @@ Database: PostgreSQL
 DB Admin: Adminer
 
 Orchestration: Docker Compose
+
 ---
 
 🧩 Next Steps / Improvements
@@ -127,4 +128,5 @@ Add authentication (users)
 Add unit tests (Pytest, React Testing Library)
 
 Deploy to cloud (e.g. AWS, GCP, Render)
+
 ---
