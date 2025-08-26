@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS clicks (
+  id SERIAL PRIMARY KEY,
+  button TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
