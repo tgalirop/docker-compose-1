@@ -78,6 +78,8 @@ docker compose up --build -d
 | Swagger  | [http://localhost:8000/docs](http://localhost:8000/docs) | API docs (Swagger UI) |
 | Adminer  | [http://localhost:8081](http://localhost:8081)           | DB web interface      |
 
+---
+
 Example Usage
 
 Open the frontend → click Button A or Button B
@@ -87,6 +89,8 @@ Each click is stored in PostgreSQL
 View counts in the frontend
 
 Check the database via Adminer (Server: db, User: appuser, Password: secretpassword, Database: appdb)
+
+---
 
 API endpoints:
 ```
@@ -101,6 +105,8 @@ curl -X POST http://localhost:8000/api/clicks \
 # Clear all clicks
 curl -X DELETE http://localhost:8000/api/clicks/clear
 ```
+
+---
 🛠️ Tech Stack
 
 Frontend: React + Vite
@@ -112,6 +118,7 @@ Database: PostgreSQL
 DB Admin: Adminer
 
 Orchestration: Docker Compose
+---
 
 🧩 Next Steps / Improvements
 
@@ -120,3 +127,4 @@ Add authentication (users)
 Add unit tests (Pytest, React Testing Library)
 
 Deploy to cloud (e.g. AWS, GCP, Render)
+---
