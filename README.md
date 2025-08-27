@@ -184,8 +184,9 @@ echo "$MINI_IP click.localtest.me adminer.localtest.me" | sudo tee -a /etc/hosts
 Υπενθύμιση
 DB credentials:
 
-```
+
 makefile
+```
 user: appuser
 password: secretpassword
 db: appdb
