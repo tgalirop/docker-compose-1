@@ -191,5 +191,6 @@ user: appuser
 password: secretpassword
 db: appdb
 host (K8s): postgres
-Ο πίνακας clicks δημιουργείται αυτόματα μέσω ConfigMap (db-init-configmap.yaml).
+
 ```
+Ο πίνακας clicks δημιουργείται αυτόματα μέσω ConfigMap (db-init-configmap.yaml).
