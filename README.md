@@ -189,3 +189,58 @@ password: secretpassword
 db: appdb
 host (K8s): postgres
 ```
+---
+## 🔄 Docker Compose vs Kubernetes
+---
+
+| Feature            | Docker Compose            | Kubernetes                   |
+| ------------------ | ------------------------- | ---------------------------- |
+| Multi-container    | ✅                         | ✅                            |
+| Multi-host support | ❌ (μόνο 1 host)           | ✅ (cluster με πολλά nodes)   |
+| Auto-healing       | ❌                         | ✅                            |
+| Scaling            | Manual `--scale`          | Auto (kubectl scale/HPA)     |
+| Load balancing     | Basic (ports)             | Built-in (Services, Ingress) |
+| Config/Secrets     | Env vars στο compose file | ConfigMaps & Secrets         |
+| Persistence        | Volumes                   | PersistentVolumes (PVC)      |
+
+👉 Docker Compose: τέλειο για development.
+👉 Kubernetes: απαραίτητο για production, scaling & high availability.
+
+---
+## 🖼️ Αρχιτεκτονικό Διάγραμμα
+---
+
+             ┌───────────────┐
+             │   Frontend    │  (React)
+             │ click.local…  │
+             └───────▲───────┘
+                     │
+             ┌───────┴───────┐
+             │   Ingress      │
+             └───────▲───────┘
+                     │
+     ┌───────────────┴──────────────┐
+     │           Backend             │  (FastAPI)
+     │ click.local…/api, /docs       │
+     └───────────────▲──────────────┘
+                     │
+             ┌───────┴───────┐
+             │   Postgres    │
+             │   (PVC)       │
+             └───────────────┘
+
+        + Optional: Adminer (DB UI)
+          http://adminer.localtest.me
+
+---
+
+⚡ Resources
+---
+
+-React (Vite), FastAPI, Postgres, Adminer
+
+-Docker Compose για dev
+
+-Kubernetes (minikube) για orchestration
+
+---
