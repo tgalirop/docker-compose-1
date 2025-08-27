@@ -130,3 +130,62 @@ Add unit tests (Pytest, React Testing Library)
 Deploy to cloud (e.g. AWS, GCP, Render)
 
 ---
+
+## ☸️ Kubernetes (minikube)
+
+Τα manifests βρίσκονται στον φάκελο [`k8s/`](./k8s).
+
+### Προαπαιτούμενα
+- [minikube](https://minikube.sigs.k8s.io/docs/start/)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/)
+- Ενεργοποιημένο ingress addon:
+```bash
+minikube addons enable ingress
+```
+---
+Βήματα
+Χτίσε images στο Docker του minikube:
+
+```
+eval $(minikube docker-env)
+docker build -t click-backend:local ./backend
+docker build -t click-frontend:local ./frontend
+```
+---
+Apply manifests:
+
+```
+kubectl apply -f k8s/namespace.yaml
+kubectl -n click-tracker apply -f k8s/db-init-configmap.yaml -f k8s/postgres-secret.yaml -f k8s/postgres-pvc.yaml
+kubectl -n click-tracker apply -f k8s/postgres-deploy.yaml -f k8s/backend-deploy.yaml -f k8s/frontend-deploy.yaml -f k8s/adminer-deploy.yaml -f k8s/ingress.yaml
+```
+---
+Τρέξε tunnel για το Ingress:
+
+```
+minikube tunnel
+```
+---
+(προαιρετικό) Hosts entry:
+
+```
+MINI_IP=$(minikube ip)
+echo "$MINI_IP click.localtest.me adminer.localtest.me" | sudo tee -a /etc/hosts
+```
+
+| Service  | Host URL                                                                     |
+| -------- | ---------------------------------------------------------------------------- |
+| Frontend | [http://click.localtest.me](http://click.localtest.me)                       |
+| Backend  | [http://click.localtest.me/api/counts](http://click.localtest.me/api/counts) |
+|          | [http://click.localtest.me/api/clicks](http://click.localtest.me/api/clicks) |
+|          | [http://click.localtest.me/docs](http://click.localtest.me/docs)             |
+| Adminer  | [http://adminer.localtest.me](http://adminer.localtest.me)                   |
+
+---
+DB Credentials
+```
+user: appuser
+password: secretpassword
+db: appdb
+host (K8s): postgres
+```
