@@ -204,6 +204,7 @@ host (K8s): postgres
 | Persistence        | Volumes                   | PersistentVolumes (PVC)      |
 
 👉 Docker Compose: τέλειο για development.
+
 👉 Kubernetes: απαραίτητο για production, scaling & high availability.
 
 ---
