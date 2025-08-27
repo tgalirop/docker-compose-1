@@ -221,6 +221,7 @@ The clicks table is automatically created via ConfigMap (db-init-configmap.yaml)
 | Persistence        | Volumes                   | PersistentVolumes (PVC)      |
 
 👉 Docker Compose: perfect for development.
+
 👉 Kubernetes: essential for production, scaling & high availability.
 
 ---
