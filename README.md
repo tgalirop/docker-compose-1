@@ -220,12 +220,11 @@ The clicks table is automatically created via ConfigMap (db-init-configmap.yaml)
 | Config/Secrets     | Env vars στο compose file | ConfigMaps & Secrets         |
 | Persistence        | Volumes                   | PersistentVolumes (PVC)      |
 
-👉 Docker Compose: τέλειο για development.
-
-👉 Kubernetes: απαραίτητο για production, scaling & high availability.
+👉 Docker Compose: perfect for development.
+👉 Kubernetes: essential for production, scaling & high availability.
 
 ---
-## 🖼️ Αρχιτεκτονικό Διάγραμμα
+## 🖼️ Architectural Diagram
 ---
 
              ┌───────────────┐
@@ -257,7 +256,7 @@ The clicks table is automatically created via ConfigMap (db-init-configmap.yaml)
 
 -React (Vite), FastAPI, Postgres, Adminer
 
--Docker Compose για dev
+-Docker Compose for dev
 
 -Kubernetes (minikube) για orchestration
 
