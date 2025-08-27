@@ -131,34 +131,19 @@ Deploy to cloud (e.g. AWS, GCP, Render)
 
 ---
 
-## 🚀 Kubernetes (minikube)
+## ☸️ Κubernetes (minikube)
 
-Εκτός από το `docker compose`, η εφαρμογή μπορεί να τρέξει και σε Kubernetes με χρήση των manifests που βρίσκονται στον φάκελο [`k8s/`](./k8s).
+Apart from using docker compose, the application can also run on Kubernetes with the manifests located in the [k8s/](./k8s) folder.
 
-### Προαπαιτούμενα
-- Εγκατεστημένο [minikube](https://minikube.sigs.k8s.io/docs/start/)
-- Ενεργοποιημένο ingress addon:
+### Prerequisites
+- Εγκατεστημένο
+ - [minikube](https://minikube.sigs.k8s.io/docs/start/)
+ - [kubectl](https://kubernetes.io/docs/tasks/tools/)   
+- Installed ingress addon:
   ```bash
   minikube addons enable ingress
-Βήματα εκτέλεσης
-Χτίσε τα images μέσα στο Docker του minikube:
-
-
-## ☸️ Kubernetes (minikube)
-
-Τα manifests βρίσκονται στον φάκελο [`k8s/`](./k8s).
-
-### Προαπαιτούμενα
-- [minikube](https://minikube.sigs.k8s.io/docs/start/)
-- [kubectl](https://kubernetes.io/docs/tasks/tools/)
-- Ενεργοποιημένο ingress addon:
-```bash
-minikube addons enable ingress
-```
----
-Βήματα
-Χτίσε images στο Docker του minikube:
-
+Execution steps
+Build the images inside Minikube's Docker:
 
 ```
 eval $(minikube docker-env)
@@ -166,27 +151,25 @@ docker build -t click-backend:local ./backend
 docker build -t click-frontend:local ./frontend
 ```
 
-
 ```
-
 kubectl apply -f k8s/namespace.yaml
 kubectl -n click-tracker apply -f k8s/db-init-configmap.yaml -f k8s/postgres-secret.yaml -f k8s/postgres-pvc.yaml
 kubectl -n click-tracker apply -f k8s/postgres-deploy.yaml -f k8s/backend-deploy.yaml -f k8s/frontend-deploy.yaml -f k8s/adminer-deploy.yaml -f k8s/ingress.yaml
 ```
 
-Τρέξε tunnel για το Ingress:
+Run a tunnel for the Ingress:
 
 ```bash
 minikube tunnel
 ```
-(προαιρετικό) Hosts entry αν χρειαστεί:
+(optional) Hosts entry if needed:
 
 ```bash
 MINI_IP=$(minikube ip)
 echo "$MINI_IP click.localtest.me adminer.localtest.me" | sudo tee -a /etc/hosts
 ```
 ---
-Διαθέσιμα URLs
+Available URLs
 
 [Frontend (React app)](http://click.localtest.me)
 
@@ -199,9 +182,8 @@ echo "$MINI_IP click.localtest.me adminer.localtest.me" | sudo tee -a /etc/hosts
 
 ---
 
-Υπενθύμιση
+Reminder
 DB credentials:
-
 
 makefile
 ```
@@ -211,21 +193,10 @@ db: appdb
 host (K8s): postgres
 
 ```
-Ο πίνακας clicks δημιουργείται αυτόματα μέσω ConfigMap (db-init-configmap.yaml).
+The clicks table is automatically created via ConfigMap (db-init-configmap.yaml).
 
 ---
-Τρέξε tunnel για το Ingress:
 
-```
-minikube tunnel
-```
----
-(προαιρετικό) Hosts entry:
-
-```
-MINI_IP=$(minikube ip)
-echo "$MINI_IP click.localtest.me adminer.localtest.me" | sudo tee -a /etc/hosts
-```
 
 | Service  | Host URL                                                                     |
 | -------- | ---------------------------------------------------------------------------- |
@@ -235,14 +206,6 @@ echo "$MINI_IP click.localtest.me adminer.localtest.me" | sudo tee -a /etc/hosts
 |          | [http://click.localtest.me/docs](http://click.localtest.me/docs)             |
 | Adminer  | [http://adminer.localtest.me](http://adminer.localtest.me)                   |
 
----
-DB Credentials
-```
-user: appuser
-password: secretpassword
-db: appdb
-host (K8s): postgres
-```
 ---
 ## 🔄 Docker Compose vs Kubernetes
 ---
