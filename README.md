@@ -130,3 +130,63 @@ Add unit tests (Pytest, React Testing Library)
 Deploy to cloud (e.g. AWS, GCP, Render)
 
 ---
+
+## 🚀 Kubernetes (minikube)
+
+Εκτός από το `docker compose`, η εφαρμογή μπορεί να τρέξει και σε Kubernetes με χρήση των manifests που βρίσκονται στον φάκελο [`k8s/`](./k8s).
+
+### Προαπαιτούμενα
+- Εγκατεστημένο [minikube](https://minikube.sigs.k8s.io/docs/start/)
+- Ενεργοποιημένο ingress addon:
+  ```bash
+  minikube addons enable ingress
+Βήματα εκτέλεσης
+Χτίσε τα images μέσα στο Docker του minikube:
+
+```bash
+eval $(minikube docker-env)
+docker build -t click-backend:local ./backend
+docker build -t click-frontend:local ./frontend
+```
+
+Εφάρμοσε τα manifests:
+
+```bash
+kubectl apply -f k8s/namespace.yaml
+kubectl -n click-tracker apply -f k8s/db-init-configmap.yaml -f k8s/postgres-secret.yaml -f k8s/postgres-pvc.yaml
+kubectl -n click-tracker apply -f k8s/postgres-deploy.yaml -f k8s/backend-deploy.yaml -f k8s/frontend-deploy.yaml -f k8s/adminer-deploy.yaml -f k8s/ingress.yaml
+```
+Τρέξε tunnel για το Ingress:
+
+```bash
+minikube tunnel
+```
+(προαιρετικό) Hosts entry αν χρειαστεί:
+
+```bash
+MINI_IP=$(minikube ip)
+echo "$MINI_IP click.localtest.me adminer.localtest.me" | sudo tee -a /etc/hosts
+```
+---
+Διαθέσιμα URLs
+[Frontend (React app)](http://click.localtest.me)
+
+[Backend API](http://click.localtest.me/api/counts), [](http://click.localtest.me/api/clicks)
+
+[Swagger (FastAPI docs)](http://click.localtest.me/docs)
+
+[Adminer (DB UI)](http://adminer.localtest.me)
+
+---
+
+Υπενθύμιση
+DB credentials:
+
+```
+makefile
+user: appuser
+password: secretpassword
+db: appdb
+host (K8s): postgres
+Ο πίνακας clicks δημιουργείται αυτόματα μέσω ConfigMap (db-init-configmap.yaml).
+```
