@@ -169,6 +169,7 @@ echo "$MINI_IP click.localtest.me adminer.localtest.me" | sudo tee -a /etc/hosts
 ```
 ---
 Διαθέσιμα URLs
+
 [Frontend (React app)](http://click.localtest.me)
 
 [Backend API](http://click.localtest.me/api/counts), [](http://click.localtest.me/api/clicks)
