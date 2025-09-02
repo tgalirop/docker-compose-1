@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: click-app
+  namespace: click-tracker
+spec:
+  hosts:
+  - "click.localtest.me"
+  gateways:
+  - click-tracker-gw
+  http:
+  - match:
+    - uri: { prefix: /api }
+    - uri: { prefix: /docs }
+    - uri: { prefix: /health }
+    route:
+    - destination:
+        host: backend.click-tracker.svc.cluster.local
+        port: { number: 8000 }
+  - match:
+    - uri: { prefix: / }
+    route:
+    - destination:
+        host: frontend.click-tracker.svc.cluster.local
+        port: { number: 80 }

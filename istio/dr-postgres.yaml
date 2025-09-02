@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: postgres
+  namespace: click-tracker
+spec:
+  host: postgres.click-tracker.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
