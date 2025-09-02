@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: adminer
+  namespace: click-tracker
+spec:
+  hosts:
+  - "adminer.localtest.me"
+  gateways:
+  - click-tracker-gw
+  http:
+  - route:
+    - destination:
+        host: adminer.click-tracker.svc.cluster.local
+        port: { number: 8080 }
